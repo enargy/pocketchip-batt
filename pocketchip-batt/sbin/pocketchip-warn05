@@ -13,7 +13,9 @@ if [ ! -f $HOME/.pocketchip-batt/warn05 ] && [ "$(cat /usr/lib/pocketchip-batt/c
     mkdir -p $HOME/.pocketchip-batt
     touch $HOME/.pocketchip-batt/warn05
   elif [ $(echo " $VOLT < 3400" | bc ) -eq 1 ]; then
-    rm $HOME/.pocketchip-batt/warn05
+    if [ -d $HOME/.pocketchip-batt/warn05 ]; then
+      rm $HOME/.pocketchip-batt/warn05
+    fi
   fi
 
 #elif [ -f $HOME/.pocketchip-batt/warn05 ] && [ $(cat /usr/lib/pocketchip-batt/charging) = "1" ]; then
@@ -25,7 +27,9 @@ else
   done
 
   if [ $(echo " $VOLT > 3400" | bc ) -eq 1 ]; then
-    rm $HOME/.pocketchip-batt/warn05
+    if [ -d $HOME/.pocketchip-batt/warn05 ]; then
+      rm $HOME/.pocketchip-batt/warn05
+    fi
   fi
 
 
